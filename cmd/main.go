@@ -3,8 +3,14 @@ package main
 import (
 	"fmt"
 	"log"
+	"net/http"
 
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/config"
+	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/adaptor/repositories/database/menudb"
+	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/handler"
+	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/handler/menuhdl"
+	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/service/menusrv"
+	"github.com/labstack/echo/v4"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -15,7 +21,24 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	_, _ = initDB(cfg.Database)
+
+	db, err := initDB(cfg.Database)
+	if err != nil {
+		panic(err)
+	}
+
+	// Init repository
+	productDB := menudb.New(db)
+	menuService := menusrv.New(productDB)
+	menuHandler := menuhdl.NewHTTPHandler(&menuService)
+
+	// Starting server
+	e := echo.New()
+	handler.InitRoute(e, menuHandler)
+	log.Println("Starting server on port 8080...")
+	if err := e.Start(":8080"); err != http.ErrServerClosed {
+		log.Fatal(err)
+	}
 }
 
 func initDB(dbCfg config.Database) (*gorm.DB, error) {

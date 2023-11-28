@@ -3,6 +3,7 @@ package menuhdl
 import (
 	"net/http"
 
+	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/constant"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/models"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/service"
 	"github.com/labstack/echo/v4"
@@ -44,8 +45,8 @@ func (hdl *HTTPHandler) GetAll(c echo.Context) error {
 		responseBodyList = append(responseBodyList, ResponseBody(each))
 	}
 
-	response.Code = 100
-	response.Message = "Successfully"
+	response.Code = constant.SuccessCode
+	response.Message = constant.SuccessMessage
 	response.Data = responseBodyList
 
 	return c.JSON(http.StatusOK, response)

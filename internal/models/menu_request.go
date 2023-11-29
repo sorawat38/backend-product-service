@@ -15,7 +15,7 @@ type MenuGetAllResponseBody struct {
 
 type MenuGetByIdResponse struct {
 	CommonResponse
-	Data MenuGetAllResponseBody `json:"data,omitempty"`
+	Data MenuGetByIdResponseBody `json:"data,omitempty"`
 }
 
 type MenuGetByIdResponseBody struct {

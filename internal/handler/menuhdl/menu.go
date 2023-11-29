@@ -41,7 +41,7 @@ func (hdl *HTTPHandler) GetById(c echo.Context) error {
 	var response models.MenuGetByIdResponse
 	response.Code = constant.SuccessCode
 	response.Message = constant.SuccessMessage
-	response.Data = models.MenuGetAllResponseBody(result)
+	response.Data = models.MenuGetByIdResponseBody(result)
 
 	return c.JSON(http.StatusOK, response)
 }

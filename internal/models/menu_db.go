@@ -5,8 +5,7 @@ import (
 )
 
 type Menu struct {
-	MenuID     int
-	Name       string
-	Ingredient string
-	Price      decimal.Decimal
+	MenuID int
+	Name   string
+	Price  decimal.Decimal
 }

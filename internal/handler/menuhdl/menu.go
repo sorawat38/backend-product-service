@@ -2,25 +2,13 @@ package menuhdl
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/constant"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/models"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/service"
 	"github.com/labstack/echo/v4"
-	"github.com/shopspring/decimal"
 )
-
-type Response struct {
-	models.CommonResponse
-	Data []ResponseBody `json:"data,omitempty"`
-}
-
-type ResponseBody struct {
-	MenuID     int             `json:"menu_id,omitempty"`
-	Name       string          `json:"name,omitempty"`
-	Ingredient string          `json:"ingredient,omitempty"`
-	Price      decimal.Decimal `json:"price,omitempty"`
-}
 
 type HTTPHandler struct {
 	menuService service.MenuService
@@ -32,17 +20,43 @@ func NewHTTPHandler(menuService service.MenuService) HTTPHandler {
 	}
 }
 
+func (hdl *HTTPHandler) GetById(c echo.Context) error {
+
+	id := c.Param("id")
+	if id == "" {
+		return echo.NewHTTPError(http.StatusBadRequest)
+	}
+
+	newId, err := strconv.Atoi(id)
+	if err != nil {
+
+		return echo.NewHTTPError(http.StatusBadRequest)
+	}
+
+	result, err := hdl.menuService.GetById(newId)
+	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest)
+	}
+
+	var response models.MenuGetByIdResponse
+	response.Code = constant.SuccessCode
+	response.Message = constant.SuccessMessage
+	response.Data = models.MenuGetAllResponseBody(result)
+
+	return c.JSON(http.StatusOK, response)
+}
+
 func (hdl *HTTPHandler) GetAll(c echo.Context) error {
 
-	var response Response
+	var response models.MenuGetAllResponse
 	resultList, err := hdl.menuService.GetAll()
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest)
 	}
 
-	var responseBodyList = make([]ResponseBody, 0, len(resultList))
+	var responseBodyList = make([]models.MenuGetAllResponseBody, 0, len(resultList))
 	for _, each := range resultList {
-		responseBodyList = append(responseBodyList, ResponseBody(each))
+		responseBodyList = append(responseBodyList, models.MenuGetAllResponseBody(each))
 	}
 
 	response.Code = constant.SuccessCode

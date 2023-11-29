@@ -17,6 +17,16 @@ func New(menuRepo database.MenuRepository) service {
 	}
 }
 
+func (srv *service) GetById(id int) (models.Menu, error) {
+
+	result, err := srv.menuRepo.GetById(id)
+	if err != nil {
+		return models.Menu{}, err
+	}
+
+	return result, nil
+}
+
 func (srv *service) GetAll() ([]models.Menu, error) {
 
 	resultList, err := srv.menuRepo.GetAll()

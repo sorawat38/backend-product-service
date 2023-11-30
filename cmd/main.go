@@ -35,8 +35,9 @@ func main() {
 	// Starting server
 	e := echo.New()
 	handler.InitRoute(e, menuHandler)
-	log.Println("Starting server on port 8080...")
-	if err := e.Start(":8080"); err != http.ErrServerClosed {
+
+	log.Printf("Starting server on port %v...\n", cfg.App.Port)
+	if err := e.Start(":" + cfg.App.Port); err != http.ErrServerClosed {
 		log.Fatal(err)
 	}
 }

@@ -9,6 +9,7 @@ type Config struct {
 
 type App struct {
 	Name string
+	Port string
 }
 
 type Database struct {

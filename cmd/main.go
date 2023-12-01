@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/config"
@@ -40,9 +39,9 @@ func main() {
 	e := echo.New()
 	handler.InitRoute(e, menuHandler)
 
-	log.Printf("Starting server on port %v...\n", cfg.App.Port)
+	logger.Infof("Starting server on port %v...\n", cfg.App.Port)
 	if err := e.Start(":" + cfg.App.Port); err != http.ErrServerClosed {
-		log.Fatal(err)
+		logger.Fatal(err.Error())
 	}
 }
 
@@ -55,14 +54,14 @@ func initDB(dbCfg config.Database) (*gorm.DB, error) {
 		dbCfg.DBName,
 	)
 
-	log.Printf("Connecting database... %v\n", dsn)
+	logger.Infof("Connecting database... %v\n", dsn)
 
 	gormDB, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		return nil, err
 	}
 
-	log.Println("Connect database successfully!!")
+	logger.Infof("Connect database successfully!!")
 
 	return gormDB, err
 }

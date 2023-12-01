@@ -4,12 +4,17 @@ import "github.com/spf13/viper"
 
 type Config struct {
 	App      App
+	Log      Log
 	Database Database
 }
 
 type App struct {
 	Name string
 	Port string
+}
+
+type Log struct {
+	Env string
 }
 
 type Database struct {

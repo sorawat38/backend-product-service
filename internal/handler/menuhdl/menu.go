@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/constant"
+	apiresponses "github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/handler/apiResponses"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/models"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/service"
 	"github.com/labstack/echo/v4"
@@ -24,18 +25,18 @@ func (hdl *HTTPHandler) GetById(c echo.Context) error {
 
 	id := c.Param("id")
 	if id == "" {
-		return echo.NewHTTPError(http.StatusBadRequest)
+		return echo.NewHTTPError(http.StatusBadRequest, apiresponses.InvalidInputError(nil))
 	}
 
 	newId, err := strconv.Atoi(id)
 	if err != nil {
 
-		return echo.NewHTTPError(http.StatusBadRequest)
+		return echo.NewHTTPError(http.StatusBadRequest, apiresponses.InvalidInputError(err))
 	}
 
 	result, err := hdl.menuService.GetById(newId)
 	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest)
+		return echo.NewHTTPError(http.StatusBadRequest, apiresponses.InternalError(err))
 	}
 
 	var response models.MenuGetByIdResponse

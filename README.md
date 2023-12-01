@@ -1,14 +1,12 @@
-# Ice Cream Shop Backend
+# Ice Cream Shop - Product service
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Welcome to the Ice Cream Shop Backend! This project serves as the backend for a delightful web application that helps manage orders, inventory, and customer interactions for your favorite ice cream shop.
+Welcome to the Ice Cream Shop Product service! This project serves as the backend for a delightful web application that helps manage orders, inventory, and customer interactions for your favorite ice cream shop.
 
 ## Features
 
-- **Order Management:** Easily create, view, and update customer orders.
-- **Inventory Tracking:** Keep track of available ice cream flavors and toppings.
-- **User Authentication:** Secure user accounts with authentication and authorization.
+- **Inventory Tracking:** Keep track of available ice cream flavors.
 - **API Integration:** Provides a RESTful API for communication with frontend applications.
 
 ## Table of Contents

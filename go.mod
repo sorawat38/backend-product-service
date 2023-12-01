@@ -6,6 +6,7 @@ require (
 	github.com/labstack/echo/v4 v4.11.2
 	github.com/shopspring/decimal v1.3.1
 	github.com/spf13/viper v1.17.0
+	go.uber.org/zap v1.21.0
 	gorm.io/driver/mysql v1.5.2
 	gorm.io/gorm v1.25.5
 )

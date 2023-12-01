@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"github.com/CLCM3102-Ice-Cream-Shop/backend-payment-service/config"
+	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/config"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )

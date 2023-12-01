@@ -9,6 +9,7 @@ import (
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/adaptor/repositories/database/menudb"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/handler"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/handler/menuhdl"
+	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/helper/logger"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/service/menusrv"
 	"github.com/labstack/echo/v4"
 	"gorm.io/driver/mysql"
@@ -21,6 +22,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	logger.InitLog(cfg.Log)
+	defer logger.CloseLogger()
 
 	db, err := initDB(cfg.Database)
 	if err != nil {

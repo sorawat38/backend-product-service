@@ -1,18 +1,16 @@
 package models
 
-import "github.com/shopspring/decimal"
-
 type MenuGetAllResponse struct {
 	CommonResponse
 	Data []MenuGetAllResponseBody `json:"data,omitempty"`
 }
 
 type MenuGetAllResponseBody struct {
-	Id          string          `json:"id"`
-	FNname      string          `json:"fNname"`
-	Description string          `json:"desc,omitempty"`
-	DisplayPic  string          `json:"displayPic"`
-	Price       decimal.Decimal `json:"price"`
+	Id          string  `json:"id"`
+	FNname      string  `json:"fName"`
+	Description string  `json:"desc,omitempty"`
+	DisplayPic  string  `json:"displayPic"`
+	Price       float64 `json:"price"`
 }
 
 type MenuGetByIdResponse struct {
@@ -21,9 +19,9 @@ type MenuGetByIdResponse struct {
 }
 
 type MenuGetByIdResponseBody struct {
-	Id          string          `json:"id"`
-	FNname      string          `json:"fNname"`
-	Description string          `json:"desc,omitempty"`
-	DisplayPic  string          `json:"displayPic"`
-	Price       decimal.Decimal `json:"price"`
+	Id          string  `json:"id"`
+	FNname      string  `json:"fName"`
+	Description string  `json:"desc,omitempty"`
+	DisplayPic  string  `json:"displayPic"`
+	Price       float64 `json:"price"`
 }

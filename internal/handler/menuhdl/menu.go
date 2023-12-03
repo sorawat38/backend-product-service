@@ -47,7 +47,8 @@ func (hdl *HTTPHandler) GetById(c echo.Context) error {
 	respData.FNname = result.Name
 	respData.Description = result.Description
 	respData.DisplayPic = result.DisplayPic
-	respData.Price = result.Price
+	price, _ := result.Price.Float64()
+	respData.Price = price
 	response.Data = respData
 
 	return c.JSON(http.StatusOK, response)
@@ -68,7 +69,8 @@ func (hdl *HTTPHandler) GetAll(c echo.Context) error {
 		responseBody.FNname = each.Name
 		responseBody.Description = each.Description
 		responseBody.DisplayPic = each.DisplayPic
-		responseBody.Price = each.Price
+		price, _ := each.Price.Float64()
+		responseBody.Price = price
 		responseBodyList = append(responseBodyList, responseBody)
 	}
 

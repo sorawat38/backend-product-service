@@ -12,6 +12,10 @@ func InitRoute(e *echo.Echo, menuHandler menuhdl.HTTPHandler) {
 		middleware.Logger(),
 		middleware.Recover(),
 		middleware.RequestID(),
+		middleware.CORSWithConfig(middleware.CORSConfig{
+			AllowOrigins: []string{"*"}, // Replace with your frontend origin(s)
+			AllowMethods: []string{echo.GET, echo.PUT, echo.POST, echo.DELETE},
+		}),
 	)
 
 	menu := e.Group("/menu")

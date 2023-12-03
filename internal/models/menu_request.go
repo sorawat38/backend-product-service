@@ -8,9 +8,11 @@ type MenuGetAllResponse struct {
 }
 
 type MenuGetAllResponseBody struct {
-	MenuID int             `json:"menu_id,omitempty"`
-	Name   string          `json:"name,omitempty"`
-	Price  decimal.Decimal `json:"price,omitempty"`
+	Id          int             `json:"id"`
+	FNname      string          `json:"fNname"`
+	Description string          `json:"desc,omitempty"`
+	DisplayPic  string          `json:"displayPic"`
+	Price       decimal.Decimal `json:"price"`
 }
 
 type MenuGetByIdResponse struct {
@@ -19,7 +21,9 @@ type MenuGetByIdResponse struct {
 }
 
 type MenuGetByIdResponseBody struct {
-	MenuID int             `json:"menu_id,omitempty"`
-	Name   string          `json:"name,omitempty"`
-	Price  decimal.Decimal `json:"price,omitempty"`
+	Id          int             `json:"id"`
+	FNname      string          `json:"fNname"`
+	Description string          `json:"desc,omitempty"`
+	DisplayPic  string          `json:"displayPic"`
+	Price       decimal.Decimal `json:"price"`
 }

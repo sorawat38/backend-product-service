@@ -42,7 +42,13 @@ func (hdl *HTTPHandler) GetById(c echo.Context) error {
 	var response models.MenuGetByIdResponse
 	response.Code = constant.SuccessCode
 	response.Message = constant.SuccessMessage
-	response.Data = models.MenuGetByIdResponseBody(result)
+
+	var respData models.MenuGetByIdResponseBody
+	respData.Id = result.MenuID
+	respData.FNname = result.Name
+	respData.Description = result.Description
+	respData.DisplayPic = result.DisplayPic
+	response.Data = respData
 
 	return c.JSON(http.StatusOK, response)
 }
@@ -57,7 +63,12 @@ func (hdl *HTTPHandler) GetAll(c echo.Context) error {
 
 	var responseBodyList = make([]models.MenuGetAllResponseBody, 0, len(resultList))
 	for _, each := range resultList {
-		responseBodyList = append(responseBodyList, models.MenuGetAllResponseBody(each))
+		var responseBody models.MenuGetAllResponseBody
+		responseBody.Id = each.MenuID
+		responseBody.FNname = each.Name
+		responseBody.Description = each.Description
+		responseBody.DisplayPic = each.DisplayPic
+		responseBodyList = append(responseBodyList, responseBody)
 	}
 
 	response.Code = constant.SuccessCode

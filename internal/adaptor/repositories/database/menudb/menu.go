@@ -15,7 +15,7 @@ func New(db *gorm.DB) repository {
 	}
 }
 
-func (repo repository) GetById(id int) (models.Menu, error) {
+func (repo repository) GetById(id string) (models.Menu, error) {
 
 	var menus models.Menu
 	tx := repo.db.Where(models.Menu{MenuID: id}).Find(&menus)

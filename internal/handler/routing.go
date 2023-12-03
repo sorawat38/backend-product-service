@@ -16,5 +16,5 @@ func InitRoute(e *echo.Echo, menuHandler menuhdl.HTTPHandler) {
 
 	menu := e.Group("/menu")
 	menu.GET("/:id", menuHandler.GetById)
-	menu.GET("/flavours", menuHandler.GetAll)
+	menu.GET("/flavors", menuHandler.GetAll)
 }

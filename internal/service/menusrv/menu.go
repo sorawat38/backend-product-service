@@ -19,11 +19,11 @@ func New(menuRepo database.MenuRepository) service {
 	}
 }
 
-func (srv *service) GetById(id int) (models.Menu, error) {
+func (srv *service) GetById(id string) (models.Menu, error) {
 
 	result, err := srv.menuRepo.GetById(id)
 	if err != nil {
-		logger.Error("can't find menu by id", zap.Int("menu_id", id), zap.Error(err))
+		logger.Error("can't find menu by id", zap.String("menu_id", id), zap.Error(err))
 		return models.Menu{}, err
 	}
 

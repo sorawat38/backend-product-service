@@ -5,7 +5,7 @@ import (
 )
 
 type Menu struct {
-	MenuID      int
+	MenuID      string
 	Name        string
 	Description string
 	DisplayPic  string

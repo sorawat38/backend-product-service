@@ -2,7 +2,6 @@ package menuhdl
 
 import (
 	"net/http"
-	"strconv"
 
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/constant"
 	apiresponses "github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/handler/apiResponses"
@@ -28,13 +27,13 @@ func (hdl *HTTPHandler) GetById(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusBadRequest, apiresponses.InvalidInputError(nil))
 	}
 
-	newId, err := strconv.Atoi(id)
-	if err != nil {
+	// newId, err := strconv.Atoi(id)
+	// if err != nil {
 
-		return echo.NewHTTPError(http.StatusBadRequest, apiresponses.InvalidInputError(err))
-	}
+	// 	return echo.NewHTTPError(http.StatusBadRequest, apiresponses.InvalidInputError(err))
+	// }
 
-	result, err := hdl.menuService.GetById(newId)
+	result, err := hdl.menuService.GetById(id)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, apiresponses.InternalError(err))
 	}

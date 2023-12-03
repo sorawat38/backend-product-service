@@ -8,7 +8,7 @@ type MenuGetAllResponse struct {
 }
 
 type MenuGetAllResponseBody struct {
-	Id          int             `json:"id"`
+	Id          string          `json:"id"`
 	FNname      string          `json:"fNname"`
 	Description string          `json:"desc,omitempty"`
 	DisplayPic  string          `json:"displayPic"`
@@ -21,7 +21,7 @@ type MenuGetByIdResponse struct {
 }
 
 type MenuGetByIdResponseBody struct {
-	Id          int             `json:"id"`
+	Id          string          `json:"id"`
 	FNname      string          `json:"fNname"`
 	Description string          `json:"desc,omitempty"`
 	DisplayPic  string          `json:"displayPic"`

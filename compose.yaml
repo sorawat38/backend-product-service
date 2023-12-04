@@ -17,6 +17,8 @@ services:
       - 3102:3102
     expose:
       - '3102'
+    volumes:
+      - ./config/config-compose.yaml:/config/config.yaml
     depends_on:
       db:
         condition: service_healthy
@@ -51,5 +53,3 @@ services:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
       retries: 10
-
-

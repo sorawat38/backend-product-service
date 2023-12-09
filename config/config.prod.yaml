@@ -1,0 +1,10 @@
+app:
+    port: "8081"
+log:
+    env: "dev"
+database:
+    username: admin
+    password: DB_PASSWORD
+    host: 'clcm3102-group-4-project.czptxhzjxjrt.us-east-1.rds.amazonaws.com'
+    port: 3306
+    dbname: product

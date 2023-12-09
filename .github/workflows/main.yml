@@ -61,6 +61,6 @@ jobs:
           script: |
             docker pull stanthikun802/backend-product-service:latest
             docker stop backend-product-service && docker rm backend-product-service
-            docker run -d -p 3102:8080 --name backend-product-service stanthikun802/backend-product-service:latest
+            docker run -d -p 3102:8081 --name backend-product-service stanthikun802/backend-product-service:latest
             docker image prune -f
 

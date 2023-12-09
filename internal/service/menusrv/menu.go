@@ -6,20 +6,21 @@ import (
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/adaptor/repositories/database"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/helper/logger"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/models"
+	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/service"
 	"go.uber.org/zap"
 )
 
-type service struct {
+type menuSrv struct {
 	menuRepo database.MenuRepository
 }
 
-func New(menuRepo database.MenuRepository) service {
-	return service{
+func New(menuRepo database.MenuRepository) service.MenuService {
+	return menuSrv{
 		menuRepo: menuRepo,
 	}
 }
 
-func (srv *service) GetById(id string) (models.Menu, error) {
+func (srv menuSrv) GetById(id string) (models.Menu, error) {
 
 	result, err := srv.menuRepo.GetById(id)
 	if err != nil {
@@ -30,7 +31,7 @@ func (srv *service) GetById(id string) (models.Menu, error) {
 	return result, nil
 }
 
-func (srv *service) GetAll() ([]models.Menu, error) {
+func (srv menuSrv) GetAll() ([]models.Menu, error) {
 
 	resultList, err := srv.menuRepo.GetAll()
 	if err != nil {

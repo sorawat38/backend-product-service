@@ -33,7 +33,7 @@ func main() {
 	// Init repository
 	productDB := menudb.New(db)
 	menuService := menusrv.New(productDB)
-	menuHandler := menuhdl.NewHTTPHandler(&menuService)
+	menuHandler := menuhdl.NewHTTPHandler(menuService)
 
 	// Starting server
 	e := echo.New()

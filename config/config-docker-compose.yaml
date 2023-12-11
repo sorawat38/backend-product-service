@@ -3,7 +3,7 @@ app:
 log:
     env: "dev"
 database:
-    username: user
+    username: root
     password: password
     host: db
     port: 3306

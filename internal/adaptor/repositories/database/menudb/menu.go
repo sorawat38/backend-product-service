@@ -1,21 +1,22 @@
 package menudb
 
 import (
+	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/adaptor/repositories/database"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/models"
 	"gorm.io/gorm"
 )
 
-type repository struct {
+type menuRepo struct {
 	db *gorm.DB
 }
 
-func New(db *gorm.DB) repository {
-	return repository{
+func New(db *gorm.DB) database.MenuRepository {
+	return menuRepo{
 		db: db,
 	}
 }
 
-func (repo repository) GetById(id string) (models.Menu, error) {
+func (repo menuRepo) GetById(id string) (models.Menu, error) {
 
 	var menus models.Menu
 	tx := repo.db.Where(models.Menu{MenuID: id}).Find(&menus)
@@ -26,7 +27,7 @@ func (repo repository) GetById(id string) (models.Menu, error) {
 	return menus, nil
 }
 
-func (repo repository) GetAll() ([]models.Menu, error) {
+func (repo menuRepo) GetAll() ([]models.Menu, error) {
 
 	var menus []models.Menu
 	tx := repo.db.Find(&menus)

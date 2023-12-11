@@ -57,7 +57,7 @@ func (hdl *HTTPHandler) GetById(c echo.Context) error {
 func (hdl *HTTPHandler) GetAll(c echo.Context) error {
 
 	var response models.MenuGetAllResponse
-	resultList, err := hdl.menuService.GetAll()
+	resultList, err := hdl.menuService.GetFlavorsAll()
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest)
 	}

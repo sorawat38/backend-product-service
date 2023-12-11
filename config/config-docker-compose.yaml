@@ -1,9 +1,9 @@
 app:
-    port: "3102"
+    port: "8081"
 log:
     env: "dev"
 database:
-    username: user
+    username: root
     password: password
     host: db
     port: 3306

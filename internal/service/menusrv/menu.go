@@ -6,20 +6,21 @@ import (
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/adaptor/repositories/database"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/helper/logger"
 	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/models"
+	"github.com/CLCM3102-Ice-Cream-Shop/backend-product-service/internal/service"
 	"go.uber.org/zap"
 )
 
-type service struct {
+type menuSrv struct {
 	menuRepo database.MenuRepository
 }
 
-func New(menuRepo database.MenuRepository) service {
-	return service{
+func New(menuRepo database.MenuRepository) service.MenuService {
+	return menuSrv{
 		menuRepo: menuRepo,
 	}
 }
 
-func (srv *service) GetById(id string) (models.Menu, error) {
+func (srv menuSrv) GetById(id string) (models.Menu, error) {
 
 	result, err := srv.menuRepo.GetById(id)
 	if err != nil {
@@ -30,18 +31,32 @@ func (srv *service) GetById(id string) (models.Menu, error) {
 	return result, nil
 }
 
-func (srv *service) GetAll() ([]models.Menu, error) {
+func (srv menuSrv) GetFlavorsAll() ([]models.Menu, error) {
 
-	resultList, err := srv.menuRepo.GetAll()
+	menuList, err := srv.menuRepo.GetAll()
 	if err != nil {
 		logger.Error("can't find all menu", zap.Error(err))
 		return nil, err
 	}
 
-	if len(resultList) == 0 {
+	if len(menuList) == 0 {
 		logger.Error("menu is empty")
 		return nil, errors.New("can't find any flavours")
 	}
 
-	return resultList, nil
+	result := getFlavorsMenu(menuList)
+	menuList = nil // reset
+
+	return result, nil
+}
+
+func getFlavorsMenu(menuList []models.Menu) []models.Menu {
+	var result []models.Menu
+	for _, menu := range menuList {
+		if menu.MenuID[0:3] == "FLV" {
+			result = append(result, menu)
+		}
+	}
+
+	return result
 }

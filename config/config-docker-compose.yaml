@@ -1,5 +1,5 @@
 app:
-    port: "3102"
+    port: "8081"
 log:
     env: "dev"
 database:

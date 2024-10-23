@@ -2,6 +2,13 @@
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+## Course Information
+
+**Course Name:** Cloud Application Requirements and Specifications  
+**Course Code:** CLCM3102    
+**Student Name:** Sorawat Tanthikun
+
+## Overview
 Welcome to the Ice Cream Shop Product service! This project serves as the backend for a delightful web application that helps manage orders, inventory, and customer interactions for your favorite ice cream shop.
 
 ## Features
